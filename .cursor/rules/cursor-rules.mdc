@@ -1,0 +1,35 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Coding Rules
+
+1. **Modularity**  
+   Organize code into separate files based on logical modules or components. Each module or component should have its own file to prevent large, monolithic files. For example, in a web application, separate concerns such as UI components, services, utilities, and configurations into different files or directories. This enhances readability, maintainability, and collaboration.
+
+2. **Naming Conventions**  
+   Follow the standard naming conventions for the programming language being used. For example, use `snake_case` for variables and functions in Python and `camelCase` in JavaScript. Consistent naming improves code clarity and aligns with language-specific expectations.
+
+3. **Code Formatting**  
+   Write clean, readable code with consistent indentation and spacing. Adhere to the project's formatting standards if defined (e.g., via tools like Prettier or ESLint). If no standards exist, default to the language’s common formatting practices.
+
+4. **Documentation**  
+   When generating functions or classes, include a brief comment describing their purpose and parameters. This ensures that the code’s intent and usage are clear to developers, especially in complex projects.
+
+5. **Error Handling**  
+   Always include appropriate error handling in functions that interact with external systems, such as APIs, databases, or file systems. For instance, use try-catch blocks in JavaScript for asynchronous operations to make the code more robust and easier to debug.
+
+6. **Performance**  
+   Optimize code for performance where necessary, but prioritize readability and maintainability. Avoid premature optimization, following the principle that clear code is more valuable than micro-optimizations unless performance is a proven concern.
+
+7. **Security**  
+   Follow security best practices, such as sanitizing inputs, using prepared statements for database queries, and avoiding hard-coded credentials. This protects the application from common vulnerabilities, especially when handling user data or external inputs.
+
+8. **Language Features**  
+   Use modern language features and best practices, but ensure compatibility with the project's target environment. For example, prefer `async/await` over callbacks in JavaScript, while confirming it suits the runtime or browser requirements.
+
+9. **Dependencies**  
+   Avoid introducing unnecessary dependencies. Prefer built-in solutions or existing project dependencies where possible to minimize complexity and maintain a lean codebase.
+
+These rules leverage Cursor’s ability to customize AI behavior, as outlined in the documentation, ensuring the AI aligns with project needs while promoting a clean and efficient codebase. They can be implemented as project-specific rules in the `.cursor/rules` directory or as global rules in Cursor’s settings, depending on the scope required.
