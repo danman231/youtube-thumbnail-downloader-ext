@@ -18,15 +18,17 @@
 
 - The `manifest.json` references all other components, acting as the entry point for the extension
 - The `background.js` script runs as a service worker, managing the extension's core functionality
-  - Creates a context menu item for YouTube thumbnails
-  - (Future) Will handle download operations when menu item is clicked
+  - Creates multiple context menu items for YouTube thumbnails
+    - One for static images with targetUrlPatterns
+    - One for videos/links on YouTube pages with documentUrlPatterns
+  - (Future) Will handle download operations when menu items are clicked
 - The `popup.html` provides a simple UI for user instructions when the browser action is clicked
 
 ## Data Flow
 
-1. User interaction (right-click on YouTube thumbnail) triggers the context menu
+1. User interaction (right-click on YouTube thumbnail or video) triggers the context menu
 2. (Future) Context menu click event will be handled by `background.js`
-3. (Future) `background.js` will extract the video ID from the thumbnail URL
+3. (Future) `background.js` will extract the video ID from the URL or page context
 4. (Future) `background.js` will initiate the download of the thumbnail image
 
 ## Extension Lifecycle

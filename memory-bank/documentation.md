@@ -50,6 +50,14 @@
    - Used minimalist transparent PNGs as temporary placeholders
    - Reason: Allows extension to load in Chrome without icon-related errors
 
+### March 30, 2023 - Fix Context Menu for YouTube Previews (Step 2 Update)
+
+1. Updated `background.js` (lines 1-21)
+   - Added a second context menu item with different triggers
+   - Expanded contexts to include "link" and "video" elements
+   - Added documentUrlPatterns to target YouTube pages specifically
+   - Reason: Addresses the issue where video previews prevented the context menu from appearing
+
 ## Technical Considerations
 
 - Used Manifest V3 as required by Chrome for modern extensions
@@ -58,6 +66,7 @@
 - Set up placeholder for extension icons
 - Used chrome.contextMenus.create with targetUrlPatterns to filter for YouTube thumbnails
 - Leveraged chrome.runtime.onInstalled to ensure menu is created at the right time
+- Added multiple context menu items with different triggers to handle YouTube's autoplay preview feature
 
 ## Future Work
 
@@ -70,4 +79,5 @@
 ## Known Issues
 
 - Icon files are minimal placeholders, not proper designed icons
-- The context menu appears for all YouTube thumbnails but doesn't yet perform any action 
+- The context menu appears for YouTube thumbnails but doesn't yet perform any action
+- The context menu for video previews will need special handling to extract the correct video ID 
