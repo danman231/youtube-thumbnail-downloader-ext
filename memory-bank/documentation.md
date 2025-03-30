@@ -58,6 +58,17 @@
    - Added documentUrlPatterns to target YouTube pages specifically
    - Reason: Addresses the issue where video previews prevented the context menu from appearing
 
+### March 30, 2023 - Implement Context Menu Click Handler (Step 3)
+
+1. Updated `background.js` (lines 1-34)
+   - Renamed context menu items for clarity:
+     - "Download YouTube Thumbnail (Image)" for static images
+     - "Download YouTube Thumbnail (Video)" for links and video elements
+   - Added click event handler using chrome.contextMenus.onClicked.addListener
+   - Implemented separate handling for image vs. video/link thumbnail types
+   - Added fallback URL detection to ensure URLs are properly captured
+   - Reason: Enables the extension to respond to user clicks and capture the necessary URL data for further processing
+
 ## Technical Considerations
 
 - Used Manifest V3 as required by Chrome for modern extensions
@@ -67,11 +78,12 @@
 - Used chrome.contextMenus.create with targetUrlPatterns to filter for YouTube thumbnails
 - Leveraged chrome.runtime.onInstalled to ensure menu is created at the right time
 - Added multiple context menu items with different triggers to handle YouTube's autoplay preview feature
+- Used onClicked event listener to capture user interactions
+- Added console logging for debugging purposes
 
 ## Future Work
 
-- Add event listeners for user interactions (Step 3)
-- Develop video ID extraction logic (Step 4)
+- Add video ID extraction logic (Step 4)
 - Create download functionality (Step 5)
 - Enhance popup UI (Step 6)
 - Replace placeholder icons with proper designed icons
@@ -79,5 +91,4 @@
 ## Known Issues
 
 - Icon files are minimal placeholders, not proper designed icons
-- The context menu appears for YouTube thumbnails but doesn't yet perform any action
-- The context menu for video previews will need special handling to extract the correct video ID 
+- The context menu for video previews may capture different URL formats requiring additional processing
