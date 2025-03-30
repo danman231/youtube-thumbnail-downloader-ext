@@ -4,16 +4,105 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      padding: 10px;
-      width: 250px;
+      padding: 16px;
+      width: 320px;
+      margin: 0;
+      color: #333;
+      line-height: 1.4;
     }
     h3 {
-      margin: 0 0 10px;
+      margin: 0 0 12px;
+      color: #c00;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 8px;
+    }
+    .section {
+      margin-bottom: 16px;
+    }
+    .instruction {
+      margin-bottom: 8px;
+      display: flex;
+      align-items: flex-start;
+    }
+    .instruction-number {
+      background-color: #c00;
+      color: white;
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 8px;
+      flex-shrink: 0;
+      font-size: 12px;
+      font-weight: bold;
+    }
+    .menu-option {
+      font-weight: bold;
+      color: #333;
+    }
+    .note {
+      font-size: 12px;
+      background-color: #f8f8f8;
+      padding: 8px;
+      border-left: 3px solid #ddd;
+      margin-top: 8px;
+    }
+    .divider {
+      border-top: 1px solid #eee;
+      margin: 12px 0;
+    }
+    footer {
+      font-size: 11px;
+      color: #777;
+      text-align: center;
+      margin-top: 16px;
     }
   </style>
 </head>
 <body>
   <h3>YouTube Thumbnail Downloader</h3>
-  <p>Right-click any YouTube thumbnail and select "Download YouTube Thumbnail" to save it.</p>
+  
+  <div class="section">
+    <div class="instruction">
+      <div class="instruction-number">1</div>
+      <div>
+        Navigate to any YouTube video or page with YouTube thumbnails
+      </div>
+    </div>
+    
+    <div class="instruction">
+      <div class="instruction-number">2</div>
+      <div>
+        Right-click on a thumbnail image and select <span class="menu-option">"Download Thumbnail (from Image)"</span>
+      </div>
+    </div>
+    
+    <div class="instruction">
+      <div class="instruction-number">3</div>
+      <div>
+        For video previews or links, right-click and select <span class="menu-option">"Download Thumbnail (from Video)"</span>
+      </div>
+    </div>
+  </div>
+  
+  <div class="note">
+    The downloaded image will automatically save to your default download folder with the filename format: <code>youtube_thumbnail_{videoId}_maxresdefault.jpg</code>
+  </div>
+  
+  <div class="divider"></div>
+  
+  <div class="section">
+    <strong>Tips:</strong>
+    <ul>
+      <li>Works on YouTube video pages, search results, and playlists</li>
+      <li>Downloads the highest quality thumbnail available (1280×720)</li>
+    </ul>
+  </div>
+  
+  <footer>
+    Version 1.0 | YouTube Thumbnail Downloader
+  </footer>
 </body>
 </html> 
