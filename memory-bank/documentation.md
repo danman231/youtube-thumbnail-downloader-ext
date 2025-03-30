@@ -69,6 +69,23 @@
    - Added fallback URL detection to ensure URLs are properly captured
    - Reason: Enables the extension to respond to user clicks and capture the necessary URL data for further processing
 
+### March 30, 2023 - Implement Video ID Extraction (Step 4)
+
+1. Updated `background.js` (lines 22-43)
+   - Added a robust `extractVideoId` function to parse YouTube URLs
+   - Implemented handling for multiple URL formats:
+     - Standard YouTube thumbnail URLs (https://i.ytimg.com/vi/VIDEO_ID/...)
+     - YouTube video URLs with query parameters (https://www.youtube.com/watch?v=VIDEO_ID)
+   - Added validation logic to prevent errors with missing or malformed URLs
+   - Used regex pattern matching for query parameter extraction
+   - Reason: Essential for identifying the correct video to download thumbnails for, handles various URL formats that may be encountered
+
+2. Enhanced context menu click handlers (lines 45-61)
+   - Updated both click handlers to extract video IDs from URLs
+   - Added additional logging to verify extraction success
+   - Improved URL fallback handling with empty string default
+   - Reason: Prepares the data needed for the download functionality in the next step
+
 ## Technical Considerations
 
 - Used Manifest V3 as required by Chrome for modern extensions
@@ -80,10 +97,11 @@
 - Added multiple context menu items with different triggers to handle YouTube's autoplay preview feature
 - Used onClicked event listener to capture user interactions
 - Added console logging for debugging purposes
+- Implemented robust URL parsing logic to handle various YouTube URL formats
+- Added validation to prevent errors with malformed or missing URLs
 
 ## Future Work
 
-- Add video ID extraction logic (Step 4)
 - Create download functionality (Step 5)
 - Enhance popup UI (Step 6)
 - Replace placeholder icons with proper designed icons

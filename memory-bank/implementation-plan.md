@@ -62,7 +62,7 @@
 
 ---
 
-## Step 4: Extract the Video ID from the Thumbnail URL
+## Step 4: Extract the Video ID from the Thumbnail URL ✅ (Completed March 30, 2023)
 - **Task**: Extract the YouTube video ID from the clicked thumbnail's URL.
 - **Details**:
   - Update the listener in `background.js`:
@@ -76,6 +76,7 @@
     ```
   - For a URL like `https://i.ytimg.com/vi/dQw4w9WgXcQ/hqdefault.jpg`, splitting by `/` gives the video ID (`dQw4w9WgXcQ`) at index 4.
 - **Test**: Right-click a YouTube thumbnail with a known URL (e.g., `https://i.ytimg.com/vi/dQw4w9WgXcQ/hqdefault.jpg`), select the option, and check the console to ensure the extracted `videoId` is correct (e.g., `dQw4w9WgXcQ`).
+- **Status**: Completed successfully. A more robust implementation was used that can handle multiple URL formats and includes validation to prevent errors with missing or malformed URLs.
 
 ---
 
@@ -149,4 +150,7 @@
 
 ## Implementation Status
 - Step 1: ✅ Completed March 30, 2023
-- Steps 2-6: Pending
+- Step 2: ✅ Completed March 30, 2023
+- Step 3: ✅ Completed March 30, 2023
+- Step 4: ✅ Completed March 30, 2023
+- Steps 5-6: Pending
