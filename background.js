@@ -1,12 +1,12 @@
 // YouTube Thumbnail Downloader - Background Service Worker
 // This file contains the context menu creation and download functionality
 
-// Create context menu item for YouTube thumbnails
+// Create context menu items for YouTube thumbnails
 chrome.runtime.onInstalled.addListener(() => {
   // Menu item for standard YouTube thumbnails (static images)
   chrome.contextMenus.create({
     id: "download-thumbnail-image",
-    title: "Download YouTube Thumbnail (Image)",
+    title: "Download Thumbnail (from Image)",
     contexts: ["image"],
     targetUrlPatterns: ["*://*.ytimg.com/vi/*"]
   });
@@ -14,13 +14,13 @@ chrome.runtime.onInstalled.addListener(() => {
   // Menu item for YouTube pages (to catch video previews and other elements)
   chrome.contextMenus.create({
     id: "download-thumbnail-page",
-    title: "Download YouTube Thumbnail (Video)",
+    title: "Download Thumbnail (from Video)",
     contexts: ["link", "video"],
     documentUrlPatterns: ["*://*.youtube.com/*"]
   });
 });
 
-// Extract video ID from a YouTube thumbnail URL
+// Extract video ID from a YouTube URL
 function extractVideoId(url) {
   if (!url) return null;
   
@@ -44,6 +44,55 @@ function extractVideoId(url) {
   return null;
 }
 
+// Extract video ID from the page URL
+function extractVideoIdFromPage(url) {
+  // YouTube video URL pattern: https://www.youtube.com/watch?v=VIDEO_ID
+  if (url && url.includes('youtube.com/watch')) {
+    const videoParam = url.match(/[?&]v=([^&]+)/);
+    if (videoParam && videoParam[1]) {
+      return videoParam[1];
+    }
+  }
+  return null;
+}
+
+// Generate thumbnail URL for specific quality
+function getThumbnailUrl(videoId, quality = 'maxresdefault') {
+  if (!videoId) return null;
+  
+  // Available qualities:
+  // maxresdefault.jpg (highest quality, 1280x720)
+  // sddefault.jpg (640x480)
+  // hqdefault.jpg (480x360)
+  // mqdefault.jpg (320x180)
+  // default.jpg (120x90)
+  
+  return `https://i.ytimg.com/vi/${videoId}/${quality}.jpg`;
+}
+
+// Download a thumbnail with the specified quality
+function downloadThumbnail(videoId, quality = 'maxresdefault') {
+  if (!videoId) {
+    console.error('No video ID provided for download');
+    return;
+  }
+  
+  const url = getThumbnailUrl(videoId, quality);
+  const filename = `youtube_thumbnail_${videoId}_${quality}.jpg`;
+  
+  chrome.downloads.download({
+    url: url,
+    filename: filename,
+    saveAs: false // Set to true if you want the user to choose the save location
+  }, (downloadId) => {
+    if (chrome.runtime.lastError) {
+      console.error('Download failed:', chrome.runtime.lastError);
+    } else {
+      console.log('Download started with ID:', downloadId);
+    }
+  });
+}
+
 // Handle context menu clicks
 chrome.contextMenus.onClicked.addListener((info, tab) => {
   // Handle image thumbnails
@@ -52,13 +101,34 @@ chrome.contextMenus.onClicked.addListener((info, tab) => {
     const videoId = extractVideoId(srcUrl);
     console.log("Image thumbnail clicked:", srcUrl);
     console.log("Extracted video ID:", videoId);
+    
+    if (videoId) {
+      // Download the thumbnail at maximum resolution
+      downloadThumbnail(videoId, 'maxresdefault');
+    }
   }
   
   // Handle video/link thumbnails
   if (info.menuItemId === "download-thumbnail-page") {
+    // First try to get from linkUrl or srcUrl
     const url = info.linkUrl || info.srcUrl || "";
-    const videoId = extractVideoId(url);
+    let videoId = extractVideoId(url);
+    
     console.log("Video/link thumbnail clicked:", url);
-    console.log("Extracted video ID:", videoId);
+    
+    // If we couldn't extract the ID from the URL directly, try from the page URL
+    if (!videoId && tab && tab.url) {
+      videoId = extractVideoIdFromPage(tab.url);
+      console.log("Extracted video ID from page URL:", videoId);
+    } else {
+      console.log("Extracted video ID:", videoId);
+    }
+    
+    if (videoId) {
+      // Download the thumbnail at maximum resolution
+      downloadThumbnail(videoId, 'maxresdefault');
+    } else {
+      console.error("Failed to extract video ID");
+    }
   }
 }); 

@@ -86,6 +86,32 @@
    - Improved URL fallback handling with empty string default
    - Reason: Prepares the data needed for the download functionality in the next step
 
+### March 30, 2023 - Implement Thumbnail Download Functionality (Step 5)
+
+1. Updated `background.js` (lines 44-85) with thumbnail URL generation and download functions
+   - Added `getThumbnailUrl` function to generate URLs for different quality thumbnails
+   - Added `downloadThumbnail` function that uses chrome.downloads.download API
+   - Created structured filenames in the format `youtube_thumbnail_{videoId}_{quality}.jpg`
+   - Implemented error handling for download failures
+   - Reason: Core functionality to save YouTube thumbnails to the user's device
+
+2. Enhanced context menu handlers (lines 82-121)
+   - Refined both handlers to call the download function after successful ID extraction
+   - Added `extractVideoIdFromPage` function to better handle video page URLs
+   - Improved the video handler to fall back to page URL extraction when needed
+   - Reason: Ensures thumbnails can be downloaded from various YouTube contexts
+
+3. Modified context menu items for clarity
+   - Renamed to "Download Thumbnail (from Image)" and "Download Thumbnail (from Video)"  
+   - Added clearer separation of functionality between the two menu items
+   - Reason: Improves user experience with more descriptive actions
+
+4. Improved error handling and logging
+   - Added console error messages when extraction fails
+   - Added console confirmation when downloads are initiated
+   - Implemented validation to prevent attempting downloads with invalid video IDs
+   - Reason: Better debugging and user experience through reliable operation
+
 ## Technical Considerations
 
 - Used Manifest V3 as required by Chrome for modern extensions
@@ -99,14 +125,19 @@
 - Added console logging for debugging purposes
 - Implemented robust URL parsing logic to handle various YouTube URL formats
 - Added validation to prevent errors with malformed or missing URLs
+- Used chrome.downloads.download API to save thumbnails automatically
+- Created descriptive filenames that include video ID and quality information
+- Implemented fallback extraction for blob URLs that appear on some YouTube pages
 
 ## Future Work
 
-- Create download functionality (Step 5)
 - Enhance popup UI (Step 6)
 - Replace placeholder icons with proper designed icons
+- Add options for users to select different thumbnail qualities
+- Add verification to check which thumbnail qualities are available for each video
 
 ## Known Issues
 
 - Icon files are minimal placeholders, not proper designed icons
-- The context menu for video previews may capture different URL formats requiring additional processing
+- No mechanism to verify if higher quality thumbnails exist before downloading
+- No user interface for selecting different thumbnail qualities

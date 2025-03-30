@@ -19,17 +19,19 @@
 - The `manifest.json` references all other components, acting as the entry point for the extension
 - The `background.js` script runs as a service worker, managing the extension's core functionality
   - Creates multiple context menu items for YouTube thumbnails
-    - One for static images with targetUrlPatterns
-    - One for videos/links on YouTube pages with documentUrlPatterns
-  - (Future) Will handle download operations when menu items are clicked
+    - "Download Thumbnail (from Image)" for static images with targetUrlPatterns
+    - "Download Thumbnail (from Video)" for videos/links on YouTube pages with documentUrlPatterns
+  - Handles video ID extraction from various URL formats
+  - Implements the download functionality using chrome.downloads.download API
 - The `popup.html` provides a simple UI for user instructions when the browser action is clicked
 
 ## Data Flow
 
 1. User interaction (right-click on YouTube thumbnail or video) triggers the context menu
-2. (Future) Context menu click event will be handled by `background.js`
-3. (Future) `background.js` will extract the video ID from the URL or page context
-4. (Future) `background.js` will initiate the download of the thumbnail image
+2. Context menu click event is handled by `background.js` click handlers
+3. `background.js` extracts the video ID from the URL or page context
+4. `background.js` generates a high-quality thumbnail URL based on the video ID
+5. `background.js` initiates the download of the thumbnail image to the user's download folder
 
 ## Extension Lifecycle
 
@@ -37,5 +39,26 @@
 2. `chrome.runtime.onInstalled` event fires, triggering context menu creation
 3. Background service worker initializes and creates context menus
 4. Service worker remains idle until context menu events occur
-5. (Future) Service worker will process downloads upon user interaction
+5. When a context menu item is clicked, the service worker:
+   - Extracts the video ID from the URL or page
+   - Generates the appropriate thumbnail URL
+   - Initiates the download process
+   - Logs the status and any errors that occur
+
+## Thumbnail Generation
+
+- Uses standard YouTube thumbnail URL patterns: `https://i.ytimg.com/vi/{VIDEO_ID}/{QUALITY}.jpg`
+- Supports multiple thumbnail qualities:
+  - maxresdefault.jpg (1280x720)
+  - sddefault.jpg (640x480)
+  - hqdefault.jpg (480x360)
+  - mqdefault.jpg (320x180)
+  - default.jpg (120x90)
+- Default implementation uses the highest quality (maxresdefault.jpg)
+
+## Error Handling
+
+- URL extraction includes validation to prevent errors with missing or malformed URLs
+- Download process includes error catching and logging
+- Implements fallback mechanisms for cases where direct video ID extraction fails
 
