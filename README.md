@@ -1,72 +1,62 @@
 # YouTube Thumbnail Downloader
 
-A Chrome extension that allows users to easily download thumbnails from YouTube videos with a simple right-click.
+A Chrome extension that allows you to easily download YouTube video thumbnails with a simple right-click.
 
 ## Features
 
-- Right-click context menu integration for YouTube thumbnails
-- Works on YouTube pages and external sites with embedded YouTube videos
-- Simple one-click download functionality
-- Automatic filename generation using video ID
-- Support for different thumbnail qualities
+- Download YouTube thumbnails with a right-click
+- Works on all YouTube pages (videos, search results, playlists)
+- Supports multiple thumbnail qualities
+- Simple and intuitive interface
+- No data collection or tracking
 
 ## Installation
 
-1. Clone this repository:
-   ```bash
-   git clone git@github.com:danman231/youtube-thumbnail-downloader.git
-   ```
-
-2. Open Chrome and navigate to `chrome://extensions/`
-
-3. Enable "Developer mode" in the top right corner
-
+1. Clone this repository
+2. Open Chrome and go to `chrome://extensions/`
+3. Enable "Developer mode" in the top right
 4. Click "Load unpacked" and select the extension directory
 
 ## Usage
 
-1. Navigate to any page containing YouTube video thumbnails
-2. Right-click on a thumbnail
-3. Select "Download YouTube Thumbnail" from the context menu
-4. The thumbnail will be automatically downloaded to your default downloads folder
+1. Navigate to any YouTube page
+2. Right-click on a thumbnail image and select "Download Thumbnail (from Image)"
+3. For video previews or links, right-click and select "Download Thumbnail (from Video)"
+4. The thumbnail will be saved to your default download folder
 
 ## Development
 
-### Prerequisites
-- Google Chrome browser
-- Basic knowledge of HTML, CSS, and JavaScript
-- Familiarity with Chrome Extension APIs
-
 ### Project Structure
+
 ```
 youtube-thumbnail-downloader/
-├── manifest.json        # Extension configuration
-├── background.js       # Service worker for core functionality
-├── popup.html         # Extension popup UI
-├── icons/            # Extension icons
-│   └── README.txt    # Icon creation instructions
-└── README.md         # This file
+├── src/                    # Source files
+│   ├── background.js       # Background service worker
+│   └── popup.html          # Popup UI
+├── icons/                  # Extension icons
+│   ├── icon16.png
+│   ├── icon48.png
+│   └── icon128.png
+├── docs/                   # Documentation
+│   └── memory-bank/        # Project documentation
+├── manifest.json           # Extension manifest
+└── README.md               # This file
 ```
 
-### Branch Strategy
-- `main`: Production-ready code
-- `dev`: Active development branch
-- Feature branches: `feature/<feature-name>`
-- Bug fixes: `fix/<bug-name>`
+### Building
 
-## Contributing
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'feat: Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+1. Ensure all dependencies are installed
+2. Run the build script (if any)
+3. Test the extension in Chrome
 
 ## License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+MIT License - See LICENSE file for details
 
-## Acknowledgments
+## Privacy Policy
 
-- YouTube for providing the thumbnail infrastructure
-- Chrome Extensions documentation and community 
+This extension does not collect or store any user data. All thumbnails are downloaded directly to your computer.
+
+## Support
+
+For support, please open an issue in the GitHub repository 
