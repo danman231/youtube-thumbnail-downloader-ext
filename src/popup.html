@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>YouTube Thumbnail Downloader</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      padding: 16px;
+      width: 320px;
+      margin: 0;
+      color: #333;
+      line-height: 1.4;
+    }
+    h3 {
+      margin: 0 0 12px;
+      color: #c00;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 8px;
+      font-size: 18px;
+    }
+    .section {
+      margin-bottom: 16px;
+    }
+    .instruction {
+      margin-bottom: 12px;
+      display: flex;
+      align-items: flex-start;
+    }
+    .instruction-number {
+      background-color: #c00;
+      color: white;
+      border-radius: 50%;
+      width: 24px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 10px;
+      flex-shrink: 0;
+      font-size: 14px;
+      font-weight: bold;
+    }
+    .menu-option {
+      font-weight: 600;
+      color: #1a73e8;
+      padding: 0 2px;
+    }
+    .note {
+      font-size: 13px;
+      background-color: #f8f9fa;
+      padding: 12px;
+      border-radius: 4px;
+      border-left: 3px solid #1a73e8;
+      margin-top: 12px;
+      color: #3c4043;
+    }
+    .note code {
+      background: #fff;
+      padding: 2px 4px;
+      border-radius: 3px;
+      font-family: 'SF Mono', Monaco, Consolas, monospace;
+      font-size: 12px;
+      color: #333;
+    }
+    .divider {
+      border-top: 1px solid #eee;
+      margin: 16px 0;
+    }
+    .tips {
+      background-color: #fff8e1;
+      padding: 12px;
+      border-radius: 4px;
+      margin-top: 12px;
+    }
+    .tips-title {
+      font-weight: 600;
+      color: #f57c00;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+    }
+    .tips-title::before {
+      content: "💡";
+      margin-right: 6px;
+    }
+    .tips ul {
+      margin: 8px 0 0;
+      padding-left: 24px;
+    }
+    .tips li {
+      margin-bottom: 6px;
+    }
+    footer {
+      font-size: 12px;
+      color: #5f6368;
+      text-align: center;
+      margin-top: 16px;
+      padding-top: 12px;
+      border-top: 1px solid #eee;
+    }
+    @media (prefers-color-scheme: dark) {
+      body {
+        background-color: #202124;
+        color: #e8eaed;
+      }
+      h3 {
+        color: #ff4444;
+        border-bottom-color: #3c4043;
+      }
+      .note {
+        background-color: #2d2d2d;
+        border-left-color: #1a73e8;
+        color: #e8eaed;
+      }
+      .note code {
+        background: #202124;
+        color: #e8eaed;
+      }
+      .tips {
+        background-color: #3d3220;
+      }
+      .divider {
+        border-top-color: #3c4043;
+      }
+      footer {
+        color: #9aa0a6;
+        border-top-color: #3c4043;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h3>YouTube Thumbnail Downloader</h3>
+  
+  <div class="section">
+    <div class="instruction">
+      <div class="instruction-number" aria-hidden="true">1</div>
+      <div>
+        Navigate to any YouTube video or page with YouTube thumbnails
+      </div>
+    </div>
+    
+    <div class="instruction">
+      <div class="instruction-number" aria-hidden="true">2</div>
+      <div>
+        Right-click on a thumbnail image and select <span class="menu-option">"Download Thumbnail (from Image)"</span>
+      </div>
+    </div>
+    
+    <div class="instruction">
+      <div class="instruction-number" aria-hidden="true">3</div>
+      <div>
+        For video previews or links, right-click and select <span class="menu-option">"Download Thumbnail (from Video)"</span>
+      </div>
+    </div>
+  </div>
+  
+  <div class="note" role="note">
+    The downloaded image will automatically save to your default download folder with the filename format:<br>
+    <code>youtube_thumbnail_{videoId}_maxresdefault.jpg</code>
+  </div>
+  
+  <div class="tips" role="complementary">
+    <div class="tips-title">Tips</div>
+    <ul>
+      <li>Works on YouTube video pages, search results, and playlists</li>
+      <li>Downloads the highest quality thumbnail available (1280×720)</li>
+      <li>Supports both light and dark themes</li>
+    </ul>
+  </div>
+  
+  <footer>
+    Version 1.0.0 | YouTube Thumbnail Downloader<br>
+    <small>Made with ❤️ for YouTube creators</small>
+  </footer>
+</body>
+</html> 

@@ -1,0 +1,13 @@
+{
+  "name": "youtube-thumbnail-downloader",
+  "version": "1.0.0",
+  "description": "Chrome extension to download YouTube thumbnails",
+  "private": true,
+  "scripts": {
+    "generate-icons": "node src/generate_icons.js",
+    "generate-promos": "node src/generate_promos.js"
+  },
+  "dependencies": {
+    "sharp": "^0.32.1"
+  }
+} 

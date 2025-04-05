@@ -1,14 +1,43 @@
 {
   "manifest_version": 3,
   "name": "YouTube Thumbnail Downloader",
-  "version": "1.0",
-  "description": "Download YouTube thumbnails with a right-click.",
-  "permissions": ["contextMenus", "downloads"],
-  "background": { "service_worker": "background.js" },
-  "action": { "default_popup": "popup.html" },
+  "version": "1.0.0",
+  "version_name": "1.0.0",
+  "description": "Download YouTube video thumbnails with a simple right-click. Supports multiple qualities and works on all YouTube pages.",
+  "author": "Your Name",
+  "permissions": [
+    "contextMenus",
+    "downloads"
+  ],
+  "host_permissions": [
+    "*://*.youtube.com/*",
+    "*://*.ytimg.com/*"
+  ],
+  "background": {
+    "service_worker": "src/background.js",
+    "type": "module"
+  },
+  "action": {
+    "default_popup": "src/popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
   "icons": {
     "16": "icons/icon16.png",
     "48": "icons/icon48.png",
     "128": "icons/icon128.png"
-  }
+  },
+  "minimum_chrome_version": "88",
+  "offline_enabled": true,
+  "update_url": "https://clients2.google.com/service/update2/crx",
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'"
+  },
+  "web_accessible_resources": [{
+    "resources": [],
+    "matches": ["*://*.youtube.com/*"]
+  }]
 } 
