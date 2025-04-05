@@ -30,7 +30,7 @@ A Chrome extension that lets you easily download high-quality thumbnails from an
 
 1. Clone this repository:
    ```bash
-   git clone https://github.com/[your-username]/youtube-thumbnail-downloader.git
+   git clone https://github.com/danman231/youtube-thumbnail-downloader-ext.git
    ```
 
 2. Open Chrome and go to `chrome://extensions/`
@@ -98,4 +98,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Version History
 
-See [CHANGELOG.md](CHANGELOG.md) for a list of changes and versions. 
+See [CHANGELOG.md](CHANGELOG.md) for a list of changes and versions.
